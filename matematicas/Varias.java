@@ -28,98 +28,137 @@ public class Varias {
     }
 
 /*              Ej.3 siguientePrimo         */
-    public static boolean siguientePrimo(long x){
-        return true;
-    }
-    public static boolean siguientePrimo(int x){
-        return siguientePrimo((long)x);
-    
+    public static int siguientePrimo(int x){
+        while (!esPrimo(++x)) {};
+        return x;
     }
 
 /*              Ej.4 potencia               */
-public static long potencia(long x){
-
-    return potencia((long)x);
-}
-public static int potencia(int x){
-    return (int)potencia((long)x);
-}
+public static  double potencia(int base, int exponente) {
+    if (exponente == 0) {
+    return 1;
+    }
+    if (exponente < 0) {
+    return 1/potencia(base, -exponente);
+    }
+    int n = 1;
+    for (int i = 0; i < Math.abs(exponente); i++) {
+    n = n * base;
+    }
+    return n;
+    }
 
 /*              Ej.5 digitos                */
-public static long digitos(long x){
-    return digitos((long)x);
-}
+public static long digitos(long x) {
+    if (x < 0) {
+    x = -x;
+    }
+    if (x == 0) {
+    return 1;
+    } else {
+    int n = 0;
+    while (x > 0) {
+    x = x / 10; // se le quita un dígito a x
+    n++;
+    }
+    return n;
+    }
+    }
 public static int digitos(int x){
     return (int)digitos((long)x);
 }
 
 /*              Ej.6 voltea                 */
-public static long voltea(long x){
-    long volteado = 0;
-    for(int i = 0;i < x;i++){
-        volteado = (volteado * 10) + (x % 10);
+public static long voltea(long x) {
+    if (x < 0) {
+    return -voltea(-x);
     }
-    return voltea((long)x);
-}
+    long volteado = 0;
+    while(x > 0) {
+    volteado = (volteado * 10) + (x % 10);
+    x = x / 10;
+    }
+    return volteado;
+    }
 public static int voltea(int x){
     return (int)voltea((long)x);
 }
 
 /*              Ej.7  digitoN               */
-public static long digitoN(long x){
-    return digitoN((long)x);
-}
-public static int digitoN(int x){
-    return (int)digitoN((long)x);
+public static long digitoN(long x, int n) {
+    x = voltea(x);
+    while (n-- > 0) {
+    x = x / 10;
+    }
+    return (int)x % 10;
+    }
+    
+public static int digitoN(int x, int n){
+    return (int)digitoN((long)x, n);
 }
 
 /*              Ej.8 posicionDeDigito       */
-public static long posicionDeDigito(long x){
-    return posicionDeDigito((long)x);
-}
-public static int posicionDeDigito(int x){
-    return (int)posicionDeDigito((long)x);
-}
+public static long posicionDeDigito(long x, int d) {
+    int i;
+    for (i = 0; (i < digitos(x)) && (digitoN(x, i) != d); i++) {};
+    if (i == digitos(x)) {
+    return -1;
+    } else {
+    return i;
+    }
+    }
+public static int posicionDeDigito(int x, int d) {
+    return (int)posicionDeDigito((long)x, d);
+    }
 
 /*              Ej.9 quitaPorDetras         */
-    public static long quitarPorDetras(long x){
-        return x/(long)potencia(10,n);
+public static long quitaPorDetras(long x, int n) {
+    return x / (long)potencia(10, n);
     }
-    public static int quitarPorDetras(int x){
-        return (int)quitarPorDetras((long)10,n);
+public static int quitaPorDetras(int x, int n) {
+    return (int)quitaPorDetras((long) x, n);
     }
+    
 
 /*              Ej.10 quitaPorDelante       */
-public static long quitaPorDelante(long x){
-    return quitaPorDelante((long)x);
-}
-public static int quitaPorDelante(int x){
-    return (int)quitaPorDelante((long)x);
-}
+public static long quitaPorDelante(long x, int n) {
+    x = pegaPorDetras(x, 1); 
+    x = voltea(quitaPorDetras(voltea(x), n));
+    x = quitaPorDetras(x, 1);
+    return x;
+    }
+public static int quitaPorDelante(int x, int n) {
+    return (int)quitaPorDelante((long)x, n);
+    }
+    
 
 /*              Ej.11 pegaPorDetras         */
-public static long pegaPorDetras(long x){
-    return pegaPorDetras((long)x);
-}
-public static int pegaPorDetras(int x){
-    return (int)pegaPorDetras((long)x);
-}
+public static long pegaPorDetras(long x, int d) {
+    return juntaNumeros(x, d);
+    }
+    public static int pegaPorDetras(int x, int d) {
+    return (int)pegaPorDetras((long)x, d);
+    }
 
 /*              Ej.12 pegaPorDelante        */
-public static long pegaPorDelante(long x){
-    return pegaPorDelante((long)x);
-}
-public static int pegaPorDelante(int x){
-    return (int)pegaPorDelante((long)x);
-}
+public static long pegaPorDelante(long x, int d) {
+    return juntaNumeros(d, x);
+    }
+    public static int pegaPorDelante(int x, int d) {
+    return (int)pegaPorDelante((long)x, d);
+    }
 
 /*              Ej.13 trozoDeNumero         */
-public static long trozoDeNumero(long x){
-return trozoDeNumero(x);
-}
-public static int trozoDeNumero(int x){
-    return (int)trozoDeNumero((long)x);
-}
+public static long trozoDeNumero(long x, int inicio, int fin) {
+    int longitud = (int)digitos(x);
+    x = quitaPorDelante(x, inicio);
+    x = quitaPorDetras(x, longitud - fin - 1);
+    return x;
+    }
+    public static int trozoDeNumero(int x, int inicio, int fin) {
+    return (int)trozoDeNumero((long)x, inicio, fin);
+    }
+    
 /*              Ej.14  juntaNumeros         */
     public static long juntaNumeros(long x, long y){
         int longitud = (int)digitos(y);
@@ -127,7 +166,7 @@ public static int trozoDeNumero(int x){
         return x;
     }
     public static int juntaNumeros(int x, int y){
-        return (int)juntaNumeros((long) x, (long) y)
+        return (int)juntaNumeros((long) x, (long) y);
     }
 }
 
