@@ -11,16 +11,16 @@ public class Varias {
 
 /*              Ej.2 esPrimo                */
     public static boolean esPrimo(long x){
-        if(x<0){
-
-        }else if(x>0){
-            int divisor=2;
-            while(divisor++<=x/2){
+        if(x<2){
+            return false;
+        }else{
+            ;
+            for(int divisor = 2; divisor<(x);divisor++)
                 if(x%divisor==0){
                     return false;
                 }
             }
-        }
+        
         return true;
     }
     public static boolean esPrimo(int x){

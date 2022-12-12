@@ -2,9 +2,7 @@ import matematicas.Varias;
 public class Ejercicio {
     public static void main(String[] args) {
         // esCapicua //
-        if (matematicas.Varias.esCapicua(29)) {
-            System.out.println("El 29 es capicúa");
-        }
+
         if (matematicas.Varias.esCapicua(976)) {
             System.out.println("El 976 es capicúa");
         }
