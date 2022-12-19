@@ -168,5 +168,6 @@ public static long trozoDeNumero(long x, int inicio, int fin) {
     public static int juntaNumeros(int x, int y){
         return (int)juntaNumeros((long) x, (long) y);
     }
+
 }
 
