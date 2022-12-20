@@ -1,6 +1,13 @@
 package matematicas.array;
 
 public class Array {
+    public static void muestraArrayInt(int a[]) {
+        for (int i = 0; i < a.length; i++) {
+        System.out.print(a[i] + " ");
+        }
+        System.out.println();
+        }
+        
     /*          1. generaArrayInt           */
         /**
 * Crea un array y lo rellena con valores aleatorios dentro de un rango.
@@ -107,9 +114,9 @@ public static boolean estaEnArrayInt(int[] a, int n) {
 */
 public static int posicionEnArrayInt(int[] a, int n) {
     for(int i = 0; i < a.length; i++) {
-    if (a[i] == n) {
-    return i;
-    }
+        if (a[i] == n) {
+            return i;
+        }
     }
     return -1;
     }
