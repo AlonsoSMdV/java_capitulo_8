@@ -1,7 +1,7 @@
 package matematicas.array;
 
 public class Array {
-    public static void muestraArrayInt(int a[]) {
+    public static void muestraArrayInt(int[] a) {
         for (int i = 0; i < a.length; i++) {
         System.out.print(a[i] + " ");
         }
